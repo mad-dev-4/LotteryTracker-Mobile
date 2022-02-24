@@ -1,0 +1,31 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+
+		<ion-title>{{ 'TICKET_RESULT' | translate }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+	<ion-card class="cardDesign" *ngIf="!ticketWithResult.TicketDrawResult">
+		No draw results for the specified ticket.
+	</ion-card>
+	
+	<div *ngIf="ticketWithResult.TicketDrawResult">	
+		<ion-card class="cardDesign" *ngFor="let card of ticketWithResult.TicketDrawResult">
+			<ticket-result-card 
+				[game]="ticketWithResult.LottoBoardGame" 
+				[otherGame]="ticketWithResult.OtherPlayBoardGame"
+				[ticket]="ticketWithResult" 
+				[ticketDrawResult]="card">
+			</ticket-result-card>
+		</ion-card>
+	</div>
+	
+	<br />
+	<br />
+
+</ion-content>

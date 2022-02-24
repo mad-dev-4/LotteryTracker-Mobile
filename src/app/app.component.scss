@@ -1,0 +1,28 @@
+ion-card.cardDesign {
+	border-top:1px solid #7e7e7e;
+	margin:0px 0px 12px 0px;
+	width:100%;
+}
+
+ion-title > div.toolbar-title {
+	color:white;
+}
+
+ion-navbar > .toolbar-background {
+	background-color:#459e00;
+}
+
+ion-navbar > button.bar-button-default {
+	color:white;
+}
+
+.navBarLogo {
+	text-align:center;
+}
+
+.errorMessageTopScreen {
+	color:red;
+	text-align:center;
+	padding: 10px 0;
+	min-height:50px;
+}

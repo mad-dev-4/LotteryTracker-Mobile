@@ -1,0 +1,87 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{ 'WINNING_NUMBERS_TITLE' | translate }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="outer-content">
+
+	<ion-card class="cardDesign">
+		<ion-card-header>
+			<ion-card-subtitle>
+				<h3>{{ 'WINNING_NUMBERS_SUBTITLE' | translate }}</h3>
+			</ion-card-subtitle>
+		</ion-card-header>
+		<ion-card-content>
+			<p>{{ 'WINNING_NUMBERS_INSTRUCTIONS' | translate }}</p>
+		</ion-card-content>
+	</ion-card>
+
+	<div *ngFor="let dws of draws; let i = index">
+		<ion-slides pager="false" [options]="slideOpts" (ionSlideWillChange)="actionWillChange(i, $event)">
+
+			<ion-slide *ngFor="let wn of dws">
+				<ion-card class="cardDesign">
+					<ion-card-header>
+						<ion-card-subtitle>
+							<h3 *ngIf="wn.ID != 0">{{wn.Draw.Game.Name}}</h3>
+						</ion-card-subtitle>
+					</ion-card-header>
+
+					<ion-card-content *ngIf="wn.ID != 0">
+						<p>{{ 'WINNING_NUMBERS_DATE' | translate }} {{wn.Draw.FormattedDate}}</p>
+						<br />
+
+						<div *ngIf="wn.Regular" class="lottoBoardNumbers">
+							<p>{{ 'WINNING_NUMBERS_REGULAR' | translate }}
+								<br />
+								{{wn.Regular | formatLottoBoardPipe}}
+							</p>
+							<br />
+						</div>
+
+						<div *ngIf="wn.Bonus">
+							<p>{{ 'WINNING_NUMBERS_BONUS' | translate }} {{wn.Bonus}}</p>
+							<br />
+						</div>
+
+						<div *ngIf="wn.BonusDraws" class="lottoBoardNumbers">
+							<p>
+								{{ 'WINNING_NUMBERS_BONUSDRAWS' | translate }}
+								<span *ngFor="let bonusDrawLine of wn.BonusDraws.split(':')"><br />{{bonusDrawLine |
+									formatLottoBoardPipe}}</span>
+							</p>
+							<br />
+						</div>
+
+						<div *ngIf="wn.GuaranteedWinning">
+							<p>{{ 'WINNING_NUMBERS_GUARANTEED' | translate }} {{wn.GuaranteedWinning}}</p>
+							<br />
+						</div>
+
+						<div *ngIf="wn.SuperDraw">
+							<p>
+								{{ 'WINNING_NUMBERS_SUPER' | translate }}
+								<br />
+								<span *ngFor="let sd of wn.SuperDraw.split(':')" class="sd">{{sd}}</span>
+							</p>
+							<br />
+						</div>
+
+						<div *ngIf="wn.Encore">
+							<p>{{ 'WINNING_NUMBERS_ENCORE' | translate }} {{wn.Encore}}</p>
+							<br />
+						</div>
+					</ion-card-content>
+				</ion-card>
+			</ion-slide>
+		</ion-slides>
+	</div>
+
+	<br />
+	<br />
+
+</ion-content>

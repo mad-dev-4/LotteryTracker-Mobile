@@ -1,0 +1,76 @@
+<ion-item>
+	<ion-icon name="logo-buffer" slot="start"></ion-icon>
+	<h3>{{ 'DASHBOARD_TICKET_RESULTS' | translate }}{{game.Name}}</h3>
+	<p>{{ticketDrawResult.LottoBoardDraw.FormattedDate}}</p>
+	<p *ngIf="ticketDrawResult.ResultEncoreComplete && ticketDrawResult.ResultRegularComplete">{{ 'DASHBOARD_WINNINGS' | translate }}{{ticketDrawResult.FormattedResultTotal}}</p>
+	<p *ngIf="ticket.GroupName">{{ 'DASHBOARD_GROUP' | translate }}{{ticket.GroupName}}<p>
+</ion-item>
+<ion-card-content>
+	<div class="ticketBorder">
+		<br />
+		<div class="lottoImage">
+			<img cache="true" width="60" height="35" src="assets/img/gamesb{{game.ID}}.png" alt="{{game.Name}}" class="lottoImage">
+			<div class="lottoTicketNum">{{ 'DASHBOARD_TICKET_NUM' | translate }}{{ticket.ID}}-{{ticketDrawResult.ID}}</div>
+		</div>
+		
+		<p *ngIf="ticketDrawResult.LottoBoardDraw" class="drawDate">
+			{{ 'TICKETLIST_DRAW_DATE' | translate }}{{ticketDrawResult.LottoBoardDraw.FormattedDate}}<br /><br />
+		</p>
+		
+		<div *ngIf="ticketDrawResult.ResultEncoreComplete && ticketDrawResult.ResultRegularComplete">
+			<!-- Show the regular board number picks -->
+			<p *ngFor="let board of ticketDrawResult.LottoBoard" class="resultLottoBoard">
+				<span *ngFor="let num of board.NumberPicks | mapToIterable" class="isWin isWin_{{num.value}}">&nbsp;{{ num.key }}&nbsp;</span>
+			</p>
+		</div>
+		<p *ngIf="!ticketDrawResult.ResultEncoreComplete">
+			<b>{{ 'DASHBOARD_NOT_CALC' | translate }}</b>
+		</p>
+		
+		<!-- Show Encore / Extra -->
+		<br />
+		<p *ngIf="otherGame">{{otherGame.Name}}</p>
+		<p *ngIf="!ticketDrawResult.ResultEncoreComplete">
+			<b>{{ 'DASHBOARD_NOT_CALC' | translate }}</b>
+		</p>
+		<p *ngIf="ticketDrawResult.ResultEncoreComplete
+			&& !ticketDrawResult.OtherPlayBoard">
+			{{ 'DASHBOARD_NOT_PLAYED' | translate }}
+		</p>
+		<p class="resultOtherBoard">
+			<span *ngFor="let otherBoardList of ticketDrawResult.OtherPlayBoard" class="encoreNum">&nbsp;{{otherBoardList.EncorePicks[0]}}&nbsp;</span>
+		</p>
+		
+
+		<!-- Guaranteed prize draw numners -->
+		<div *ngIf="ticketDrawResult.GuaranteedNumberBoard 
+			&& ticketDrawResult.GuaranteedNumberBoard[0]
+			&& ticketDrawResult.GuaranteedNumberBoard[0].GuarPicks">
+			<br />
+			<p>{{ 'DASHBOARD_GUARANTEED_PRIZE_DRAW' | translate }}</p>
+			
+			<p *ngIf="ticketDrawResult.LottoBoard.length === 1">
+				{{ticketDrawResult.GuaranteedNumberBoard[0].GuarPicks}}-01
+			</p>
+			<p *ngIf="ticketDrawResult.LottoBoard.length > 1">
+				{{ 'DASHBOARD_FROM' | translate }} {{ticketDrawResult.GuaranteedNumberBoard[0].GuarPicks}}-01
+			</p>
+			<p *ngIf="ticketDrawResult.LottoBoard.length === 10">
+				{{ 'DASHBOARD_TO' | translate }} {{ticketDrawResult.GuaranteedNumberBoard[0].GuarPicks}}-{{ticketDrawResult.LottoBoard.length}}
+			</p>
+			<p *ngIf="ticketDrawResult.LottoBoard.length > 1 && ticketDrawResult.LottoBoard.length < 10">
+				{{ 'DASHBOARD_TO' | translate }} {{ticketDrawResult.GuaranteedNumberBoard[0].GuarPicks}}-0{{ticketDrawResult.LottoBoard.length}}
+			</p>
+		</div>
+		
+		
+		<!-- Board results -->
+		<br />
+		<div  *ngIf="ticketDrawResult.ResultEncoreComplete || ticketDrawResult.ResultRegularComplete">
+			<p>{{ 'DASHBOARD_BOARD_RESULTS' | translate }}{{ticketDrawResult.FormattedResultPicks}}</p>
+			<p>{{ 'DASHBOARD_ENCORE_RESULTS' | translate }}{{ticketDrawResult.FormattedResultEncore}}</p>
+		</div>
+		
+		<br />
+	</div>
+</ion-card-content>

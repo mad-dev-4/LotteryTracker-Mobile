@@ -1,0 +1,70 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{ 'PROFILE_TITLE' | translate }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>{{ 'PROFILE_EDIT_DESC' | translate }}</ion-list-header>
+
+    <form [formGroup]="updateProfileForm" (ngSubmit)="saveProfileForm(updateProfileForm.value)">
+      <ion-item>
+        <ion-label stacked>{{ 'PROFILE_EDIT_FIRSTNAME' | translate }}</ion-label>
+        <ion-input type="text" formControlName="FirstName" [(ngModel)]="user.FirstName" #input maxlength="30">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>{{ 'PROFILE_EDIT_LASTNAME' | translate }}</ion-label>
+        <ion-input type="text" formControlName="LastName" [(ngModel)]="user.LastName" maxlength="30"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>{{ 'PROFILE_EDIT_PROVINCE' | translate }}</ion-label>
+        <ion-select [(ngModel)]="user.ProvinceCode" formControlName="ProvinceCode">
+          <ion-select-option value="AB">Alberta</ion-select-option>
+          <ion-select-option value="BC">British Columbia</ion-select-option>
+          <ion-select-option value="MB">Manitoba</ion-select-option>
+          <ion-select-option value="NB">New Brunswick</ion-select-option>
+          <ion-select-option value="NL">Newfoundland and Labrador</ion-select-option>
+          <ion-select-option value="NT">Northwest Territories</ion-select-option>
+          <ion-select-option value="NS">Nova Scotia</ion-select-option>
+          <ion-select-option value="NU">Nunavut</ion-select-option>
+          <ion-select-option value="ON">Ontario</ion-select-option>
+          <ion-select-option value="PE">Prince Edward Island</ion-select-option>
+          <ion-select-option value="QC">Quebec</ion-select-option>
+          <ion-select-option value="SK">Saskatchewan</ion-select-option>
+          <ion-select-option value="YT">Yukon</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>{{ 'PROFILE_EDIT_BIRTHDAY' | translate }}</ion-label>
+        <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MMM DD YYYY" formControlName="BirthdayDate"
+          [(ngModel)]="user.timeBirthday"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>{{ 'PROFILE_EDIT_EMAIL_UPDATES' | translate }}</ion-label>
+        <ion-toggle color="primary" formControlName="SendEmailUpdates" [(ngModel)]="user.SendEmailUpdates">
+        </ion-toggle>
+      </ion-item>
+
+      <div padding>
+        <div padding>
+          <br />
+          <ion-button size="large" expand="block" type="submit" [disabled]="!isReadyToSave">{{ 'BUTTON_SAVE' |
+            translate }}
+          </ion-button>
+          <br />
+          <br />
+        </div>
+      </div>
+    </form>
+  </ion-list>
+
+</ion-content>

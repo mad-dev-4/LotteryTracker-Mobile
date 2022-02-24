@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{ 'GROUP_SELECT_LOTTO' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-item>
+      <ion-icon name="shirt" item-left></ion-icon>
+      <h2>{{ 'GROUP_SELECT_LOTTO_TEXT' | translate }}</h2>
+    </ion-item>
+    <ion-card-content>
+      <p>{{ 'GROUP_SELECT_LOTTO_GROUP' | translate }} {{ groupName }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item class="provinceSelect">
+    <ion-label stacked>{{ 'PROFILE_EDIT_PROVINCE' | translate }}</ion-label>
+    <ion-select [(ngModel)]="lastProvince" (ionChange)="provinceSelectionChanged()">
+      <ion-select-option value="AB">Alberta</ion-select-option>
+      <ion-select-option value="BC">British Columbia</ion-select-option>
+      <ion-select-option value="MB">Manitoba</ion-select-option>
+      <ion-select-option value="NB">New Brunswick</ion-select-option>
+      <ion-select-option value="NL">Newfoundland and Labrador</ion-select-option>
+      <ion-select-option value="NT">Northwest Territories</ion-select-option>
+      <ion-select-option value="NS">Nova Scotia</ion-select-option>
+      <ion-select-option value="NU">Nunavut</ion-select-option>
+      <ion-select-option value="ON">Ontario</ion-select-option>
+      <ion-select-option value="PE">Prince Edward Island</ion-select-option>
+      <ion-select-option value="QC">Quebec</ion-select-option>
+      <ion-select-option value="SK">Saskatchewan</ion-select-option>
+      <ion-select-option value="YT">Yukon</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-card *ngFor="let game of games" (click)="actionSelectGame(game.ID, game.Name)">
+    <ion-item>
+      <img cache="true" src="assets/img/gamesb{{game.ID}}.png" alt="{{game.Name}}" class="lottoImage" item-left />
+      <h3>{{game.Name}}</h3>
+    </ion-item>
+  </ion-card>
+</ion-content>

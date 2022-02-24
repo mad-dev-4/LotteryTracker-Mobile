@@ -1,0 +1,78 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{ 'MENU_TITLE' | translate }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+	
+	<br />
+	<ion-item button (click)="actionSignOut()" lines="none">
+		<ion-label>
+			{{ 'MENU_LINK4' | translate }}
+		</ion-label>
+		<ion-icon name="log-out-sharp" slot="end"></ion-icon>
+	</ion-item>
+	<br />
+
+	<ion-list>
+		<ion-list-header>
+			<ion-label>{{ 'MENU_H0' | translate }}</ion-label>
+		</ion-list-header>
+
+		<ion-item button [routerLink]="['/account']">
+			<ion-label>
+				{{ 'MENU_LINK2' | translate }}
+			</ion-label>
+		</ion-item>
+
+		<ion-item button [routerLink]="['/change-password']">
+			<ion-label>
+				{{ 'MENU_LINK3' | translate }}
+			</ion-label>
+		</ion-item>
+
+		<ion-item button [routerLink]="['/group-manage']">
+			<ion-label>
+				{{ 'MENU_MANAGE_GROUP' | translate }}
+			</ion-label>
+		</ion-item>
+
+		<ion-item button [routerLink]="['/notifications']" lines="none">
+			<ion-label>
+				{{ 'MENU_LINK1' | translate }}
+			</ion-label>
+		</ion-item>
+	</ion-list>
+
+	<br />
+
+	<ion-list>
+		<ion-list-header>
+			<ion-label>{{ 'MENU_H1' | translate }}</ion-label>
+		</ion-list-header>
+
+		<ion-item button [routerLink]="['/terms']">
+			<ion-label>
+				{{ 'MENU_LINK5' | translate }}
+			</ion-label>
+		</ion-item>
+
+		<ion-item button [routerLink]="['/about']" lines="none">
+			<ion-label>
+				{{ 'MENU_LINK6' | translate }}
+			</ion-label>
+		</ion-item>
+	</ion-list>
+
+	<div padding>
+		<br />
+
+		<br />
+		<br />
+	</div>
+
+</ion-content>

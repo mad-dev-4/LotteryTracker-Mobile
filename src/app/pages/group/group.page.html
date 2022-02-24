@@ -1,0 +1,84 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+
+		<ion-buttons slot="primary">
+			<ion-button [routerLink]="['/group-new']">
+				<ion-icon slot="icon-only" name="add"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+
+		<ion-title>{{ 'GROUPS' | translate }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+	<ion-card *ngIf="noGroups" class="cardDesign">
+		<ion-card-content>
+			<p>{{ 'GROUP_NO_GROUPS' | translate }}</p>
+			<br />
+			<ion-button size="large" expand="block" color="primary" [routerLink]="['/group-new']">
+				<h2>{{ 'GROUP_CREATE_NEW_GROUP' | translate }}</h2>
+			</ion-button>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card *ngFor="let grp of groups" class="cardDesign">
+		<ion-item>
+			<ion-icon name="shirt" item-right></ion-icon>
+			<h2>
+				<ion-button size="small" fill="clear" color="tertiary" [routerLink]="['/ticket-list', grp.GroupId]"
+					class="groupNameLink">
+					{{grp.Name}}
+				</ion-button>
+
+				<ion-button size="small" fill="clear" color="tertiary" [routerLink]="['/group-edit', grp.GroupId]"
+					class="groupEditLink" *ngIf="grp.isCaptain">
+					{{ 'GROUP_CONFIGURE' | translate }}
+				</ion-button>
+			</h2>
+
+		</ion-item>
+		<ion-card-content>
+			<div class="groupListCardContentLeft">
+				<p><b>{{ 'GROUP_CAPTAINS' | translate }}</b></p>
+				<p><span class="list-comma" *ngFor="let cptn of grp.GroupCaptains">{{cptn.FirstName}}
+						{{cptn.LastName}}</span></p>
+			</div>
+			<div class="groupListCardContentRight" *ngIf="grp.TotalWinnings != 0">
+				<p><b>{{ 'GROUP_WINNINGS' | translate }}</b></p>
+				<p>{{grp.TotalWinnings | formatCurrencyPipe}}</p>
+			</div>
+		</ion-card-content>
+
+		<br style="clear:both" />
+		<ion-grid>
+			<ion-row>
+				<ion-col class="ion-align-items-stretch ion-no-padding">
+					<ion-button size="small" fill="clear" color="tertiary" [routerLink]="['/member', grp.GroupId]">
+						<ion-icon slot="start" name="people"></ion-icon>
+						{{ 'GROUP_MEMBERS' | translate }} ({{grp.TotalActiveMembers}})
+					</ion-button>
+				</ion-col>
+				<ion-col class="ion-align-items-stretch ion-no-padding">
+					<ion-button size="small" fill="clear" color="tertiary" [routerLink]="['/ticket-list', grp.GroupId]">
+						<ion-icon slot="start" name="logo-buffer"></ion-icon>
+						{{ 'GROUP_TICKETS' | translate }} ({{grp.TotalActiveTickets}})
+					</ion-button>
+				</ion-col>
+				<ion-col class="ion-align-items-stretch ion-no-padding">
+					<ion-button size="small" fill="clear" color="tertiary" [routerLink]="['/select-game', grp.GroupId]"
+						[queryParams]="{groupName: grp.Name}">
+						<ion-icon slot="start" name="logo-buffer"></ion-icon>
+						{{ 'GROUP_ADD_TICKET' | translate }}
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card>
+
+</ion-content>

@@ -1,0 +1,23 @@
+:host {
+	.list-comma::before {
+	  content: ', ';
+	}
+	.list-comma:first-child::before {
+	  content: '';
+	}
+	button.groupNameLink {
+		padding:0 !important;	
+		margin-right:15px;		
+	}
+	button.groupEditLink {
+	}
+	.groupListCardContentLeft {
+		float:left;
+	}
+	.groupListCardContentRight {
+		float:right;
+	}
+	.card ion-col {
+		padding:0px;
+	}
+}

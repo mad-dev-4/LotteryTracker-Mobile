@@ -1,0 +1,30 @@
+<ion-tabs #tabs (ionTabsDidChange)="tabChange(tabs)">
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="dashboard-tab">
+      <ion-icon name="pulse"></ion-icon>
+      <ion-label>{{ 'TAB_DASHBOARD' | translate }}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="group-tab">
+      <ion-icon name="shirt"></ion-icon>
+      <ion-label>{{ 'TAB_GROUP' | translate }}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="jackpot-tab">
+      <ion-icon name="trophy-sharp"></ion-icon>
+      <ion-label>{{ 'TAB_JACKPOTS' | translate }}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="draw-results-tab">
+      <ion-icon name="podium"></ion-icon>
+      <ion-label>{{ 'TAB_DRAW_RESULTS' | translate }}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="menu-tab">
+      <ion-icon name="menu"></ion-icon>
+      <ion-label>{{ 'TAB_MENU' | translate }}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>

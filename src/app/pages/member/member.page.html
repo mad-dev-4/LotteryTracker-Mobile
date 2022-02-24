@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'MEMBERS' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card class="cardDesign" *ngIf="userIsAGroupCaptian">
+    <ion-card-header>
+      {{ 'MEMBER_ADD_USER_TO_GROUP' | translate }}
+    </ion-card-header>
+    <ion-card-content id="newCommentCard">
+      <ion-item lines="none">
+        <ion-input type="email" [(ngModel)]="newEmailAddress" name="emailAddress"
+          placeholder="{{ 'MEMBER_EMAIL' | translate }}" id="inputEmailAddress"></ion-input>
+      </ion-item>
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <div class="ion-padding">
+          <ion-button slot="end" size="small" (click)="actionAddGroupMember();">
+            {{'MEMBERS_ADD' | translate }}
+            <ion-icon slot="end" name="return-down-back-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <!-- List all active members -->
+  <ion-reorder-group disabled="{{!userIsAGroupCaptian}}" (ionItemReorder)="reorderItems($event)">
+    <ion-item-sliding *ngFor="let mbr of activeMembers | orderByPipe:'Sequence' ; let last = last">
+      <ion-item>
+        <ion-icon slot="start" name="person-outline"></ion-icon>
+        <ion-label>
+          <h2 *ngIf="mbr.isRegistered">{{mbr.FirstName}} {{mbr.LastName}}</h2>
+          <h2 *ngIf="!mbr.isRegistered">{{ 'MEMBER_NOT_REGISTERED' | translate }}</h2>
+          <p>{{mbr.EmailAddress}}</p>
+          <p *ngIf="mbr.Captain==1">{{ 'MEMBER_ROLE' | translate }}{{ 'MEMBER_ROLE_CAPTAIN' | translate }}</p>
+          <p *ngIf="mbr.Captain==0">{{ 'MEMBER_ROLE' | translate }}{{ 'MEMBER_ROLE_MEMBER' | translate }}</p>
+        </ion-label>
+        <ion-reorder slot="end"></ion-reorder>
+      </ion-item>
+
+      <ion-item-options *ngIf="userIsAGroupCaptian" ide="end">
+        <ion-item-option (click)="actionChangeRole(mbr.EmailAddress);">
+          <ion-icon slot="top" name="create-outline"></ion-icon>
+          {{ 'LIST_ACTION_ROLE' | translate }}
+        </ion-item-option>
+
+        <ion-item-option (click)="actionRemoveActiveMember(mbr.EmailAddress);">
+          <ion-icon name="trash-outline" slot="top"></ion-icon>
+          {{ 'LIST_ACTION_REMOVE' | translate }}
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-reorder-group>
+
+
+
+  <!-- List all in-active group pmembers -->
+  <div *ngIf="userIsAGroupCaptian && inActiveMembers.length > 0">
+    <ion-list-header>
+      {{ 'MEMBER_INACTIVE' | translate }}
+    </ion-list-header>
+    <ion-list>
+      <ion-item-sliding *ngFor="let mbr of inActiveMembers | orderByPipe:'Sequence' ; let last = last">
+        <ion-item>
+          <ion-icon slot="start" name="person-outline"></ion-icon>
+          <ion-label>
+            <h2 *ngIf="mbr.isRegistered">{{mbr.FirstName}} {{mbr.LastName}}</h2>
+            <h2 *ngIf="!mbr.isRegistered">{{ 'MEMBER_NOT_REGISTERED' | translate }}</h2>
+            <p>{{mbr.EmailAddress}}</p>
+            <p *ngIf="mbr.Captain==1">{{ 'MEMBER_ROLE' | translate }}{{ 'MEMBER_ROLE_CAPTAIN' | translate }}</p>
+            <p *ngIf="mbr.Captain==0">{{ 'MEMBER_ROLE' | translate }}{{ 'MEMBER_ROLE_MEMBER' | translate }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options *ngIf="userIsAGroupCaptian" ide="end">
+          <ion-item-option (click)="actionPostRemoveMember(mbr.EmailAddress);">
+            <ion-icon slot="top" name="trash-outline"></ion-icon>
+            {{ 'LIST_ACTION_REMOVE' | translate }}
+          </ion-item-option>
+
+          <ion-item-option (click)="actionActivateMember(mbr.EmailAddress);">
+            <ion-icon slot="top" name="add-outline"></ion-icon>
+            {{ 'MEMBER_ACTIVATE' | translate }}
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+</ion-content>

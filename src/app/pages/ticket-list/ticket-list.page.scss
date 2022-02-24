@@ -1,0 +1,50 @@
+:host {
+	/* Start Lotto board design */
+	div.lottoImage {
+		text-align:left;
+	}
+	img.lottoImage {
+		width:60px;
+		height:35px;
+		float:left;
+	}
+	p.drawDate {
+		clear:both;
+	}
+	div.lottoTicketNum {
+		float:right;
+	}
+	p.resultOtherBoard {
+		word-spacing:10px;
+	}
+	span.encoreNum {	
+		line-height:1.5;
+		display:-webkit-inline-box;
+	}
+	.ticketBorder {
+		margin:2px;
+		padding:0px 10px;
+		border:2px solid #C8C8C8;
+		background-color:#D3D3D3;
+		text-align:center;
+	}
+	.resultLottoBoard {
+		white-space:nowrap;
+		word-spacing:1px;
+		line-height:1.5;
+	}
+	.isWin {
+		border-radius:9px;
+		margin-right:4px;
+		padding:0 3px;
+		border:2px solid transparent;
+	}
+	.isWin_1 {
+		border:2px solid green;
+	}
+	.isWin_2 {
+		border:2px solid red;
+	}
+	/* End Lotto board design */
+	
+}

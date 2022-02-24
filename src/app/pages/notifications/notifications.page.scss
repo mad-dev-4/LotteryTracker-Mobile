@@ -1,0 +1,19 @@
+:host {
+	ion-list + ion-list {
+		margin-top: 0;
+	}
+	.small-text {
+		font-size: 10px;
+	}
+	img.lottoImage {
+		width:auto
+	}
+	div.lottoImage {
+		float:left;
+		padding-right:10px;
+		min-height:60px;
+	}
+	div.gameDetails {
+		display:inline-block
+	}
+}

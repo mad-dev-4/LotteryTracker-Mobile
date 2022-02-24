@@ -1,0 +1,25 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{ 'ALERTS_JACKPOTS' | translate }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="outer-content">
+	
+		<ion-card class="cardDesign" *ngFor="let jackpot of jackpots">
+			<ion-item>
+				<div class="lottoImage">
+					<img cache="true" width="60" height="35" src="assets/img/gamesb{{jackpot.Draw.Game.ID}}.png" alt="{{jackpot.Draw.Game.Name}}" class="lottoImage">
+				</div>
+				<div class="gameDetails">
+					<p>{{ 'ALERTS_NEXT_JACKPOT_DATE' | translate }}{{ jackpot.FormattedNextDrawDate }}</p>
+					<h1>{{ jackpot.Jackpot | formatCurrencyPipe}} {{ 'ALERTS_EST' | translate }}</h1>
+				</div>
+			</ion-item>
+			
+		</ion-card>
+	
+</ion-content>

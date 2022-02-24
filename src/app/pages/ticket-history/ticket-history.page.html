@@ -1,0 +1,36 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+
+		<ion-buttons slot="primary">
+			<ion-button [routerLink]="['/ticket-new']">
+				<ion-icon slot="icon-only" name="add"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+
+		<ion-title>{{ 'TICKETLIST_PAST_TICKETS' | translate }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+	<h1>{{ 'TICKETLIST_RECENT' | translate }}</h1>
+	<ion-card class="cardDesign" *ngFor="let card of ticketsAll">
+		<ticket-card [ticket]="card"></ticket-card>
+	</ion-card>
+
+	<p class="ion-padding" *ngIf="!foundGroupTickets">
+		{{ 'TICKETLIST_NO_TICKETS' | translate }}
+	</p>
+
+	<p class="ion-padding" *ngIf="pageNumber >= maxPageNumber" lines="none">
+		{{ 'TICKETLIST_MAX_REACHED' | translate }}
+	</p>
+
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll-content></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+
+</ion-content>

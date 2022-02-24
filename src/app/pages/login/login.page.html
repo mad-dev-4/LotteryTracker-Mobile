@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'LOGIN' | translate }}</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h1 class="login-title">{{ 'LOGIN_TITLE' | translate }}</h1>
+  <br /><br />
+  <form  (ngSubmit)="doLogin()">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
+
+          <div padding>
+            <ion-item>
+              <ion-label stacked>{{ 'EMAIL' | translate }}</ion-label>
+              <ion-input type="email" clearInput [(ngModel)]="account.UserName" name="email"
+                placeholder="{{ 'LOGIN_EMAIL_PLACEHOLDER' | translate }}"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label stacked>{{ 'PASSWORD' | translate }}</ion-label>
+              <ion-input type="password" clearInput [(ngModel)]="account.Password" name="password"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{ 'LOGIN_REMEMBER_ME' | translate }}</ion-label>
+              <ion-checkbox name="rememberMe" [(ngModel)]="account.RememberMe"></ion-checkbox>
+            </ion-item>
+
+            <div padding>
+              <br />
+              <ion-button size="large" expand="block" type="submit">{{ 'LOGIN_BUTTON' | translate }}</ion-button>
+              <br />
+              <br />
+              <ion-button color="secondary" (click)="forgotPasswordLink()">{{ 'LOGIN_LINK_FORGOT_PASSWORD' |
+                translate }}
+              </ion-button>
+            </div>
+
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

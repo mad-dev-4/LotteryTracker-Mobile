@@ -1,0 +1,32 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+
+		<ion-title>{{ 'GROUP_MANAGE' | translate }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+  <p>
+    {{ 'GROUP_MANAGE_SUBHEADER' | translate }}
+  </p>
+  
+	<div *ngIf="noGroups" class="cardDesign">
+    <ion-text color="dark">
+      <p>{{ 'GROUP_MANAGE_NO_GROUPS' | translate }}</p>
+    </ion-text>
+    <br />
+	</div>
+
+  <ion-list> 
+      <ion-item *ngFor="let grp of groups">
+        <ion-label>{{grp.Name}}</ion-label>
+        <ion-button color="primary" slot="end" (click)="deleteGroup(grp.GroupId, grp.Name)">{{ 'GROUP_MANAGE_DELETE' | translate }}</ion-button>
+      </ion-item>
+  </ion-list>
+	
+</ion-content>

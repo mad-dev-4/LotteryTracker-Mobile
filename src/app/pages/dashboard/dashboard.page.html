@@ -1,0 +1,81 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{ 'DASHBOARD_TITLE' | translate }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="outer-content">
+	<ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+
+	<ion-card class="cardDesign">
+		<ion-card-header>{{ 'DASHBOARD_ADD_COMMENT' | translate }}</ion-card-header>
+		<ion-card-content id="newCommentCard">
+			<ion-item>
+				<ion-textarea [(ngModel)]="newComment" id="newCommentBox"></ion-textarea>
+			</ion-item>
+		</ion-card-content>
+		<ion-row>
+			<ion-col>
+				<ion-item >
+					<ion-select id="selectGroup" class="dropDownMenu" [(ngModel)]="selectedGroup"
+						placeholder="{{ 'DASHBOARD_SELECT_GROUP' | translate }}" okText="{{ 'BUTTON_OK' | translate }}"
+						cancelText="{{ 'BUTTON_CANCEL' | translate }}" icon-left clear small>
+						<ion-select-option *ngFor="let group of groups" value="{{group.GroupId}}">{{group.Name}}
+						</ion-select-option>
+					</ion-select>
+				</ion-item>
+			</ion-col>
+			<ion-col>
+				<ion-button size="default" (click)="actionPostComment();">
+					{{ 'POST_BUTTON' | translate }}
+					<ion-icon slot="start" name="enter-outline"></ion-icon>
+				</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-card>
+
+	<ion-card class="cardDesign" *ngFor="let card of cardList">
+		<div *ngIf="!card.MessageType">
+			<ion-item slot="start" color="primary">
+				<ion-icon name="person" slot="start"></ion-icon>
+				<h5 slot="start">{{card.UserName}}</h5>
+				<p slot="end">{{card.FormattedDateTime}}</p>
+			</ion-item>
+			<ion-card-content>
+				<p>{{card.Message}}</p>
+			</ion-card-content>
+
+			<ion-row>
+				<ion-col>
+					<ion-chip color="primary">
+						<ion-icon name="people-outline"></ion-icon>
+						<ion-label>{{ 'GROUP_SELECT_LOTTO_GROUP'| translate}} {{card.GroupName}}</ion-label>
+					</ion-chip>
+				</ion-col>
+			</ion-row>
+		</div>
+		<div *ngIf="card.MessageType==='TicketDrawsId' && card.TicketDrawResult
+			&& card.TicketDrawResult.ResultRegularComplete">
+			<ticket-result-card [game]="card.TicketDrawResult.LottoBoardDraw.Game"
+				[otherGame]="card.TicketDrawResult.OtherPlayBoardDraw.Game" [ticket]="card"
+				[ticketDrawResult]="card.TicketDrawResult">
+			</ticket-result-card>
+		</div>
+	</ion-card>
+
+	<!-- if no cards found -->
+	<ion-card class="cardDesign" *ngIf="!cardList || cardList.length == 0">
+		<ion-card-content>
+			<p>{{ 'DASHBOARD_NO_MESSAGES' | translate }}</p>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll-content></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{ 'TAB_NOTIFICATION' | translate }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="outer-content">
+
+		<ion-card class="cardDesign">
+			<ion-card-content>
+				{{ 'ALERTS_DESCRIPTION' | translate }}
+			</ion-card-content>
+		</ion-card>
+		
+		<ion-list>
+			<ion-list-header>
+				<div class="input-wrapper">
+					 {{ 'ALERTS_LOTTO_649' | translate }}     
+				</div>
+				<ion-badge color="secondary" item-right="">{{ slider649 | formatCurrencyPipe}}</ion-badge>
+			</ion-list-header>
+			<ion-item>
+				<ion-range min="0" max="50000000" step="1000000" snaps="true" pin="false" [(ngModel)]="slider649" color="secondary" debounce="10" (ionChange)="update649();">
+					<ion-icon range-left class="small-text">{{ 'ALERTS_OFF' | translate }}</ion-icon>
+					<ion-icon range-right class="small-text">{{ 'ALERTS_MAX' | translate }}</ion-icon>
+				</ion-range>
+			</ion-item>
+		</ion-list>
+
+		<ion-list>	
+			<ion-list-header>
+				<div class="input-wrapper">
+					{{ 'ALERTS_LOTTO_MAX' | translate }}
+				</div>
+				<ion-badge color="secondary" item-right="">{{ sliderMax | formatCurrencyPipe}}</ion-badge>
+			</ion-list-header>
+			<ion-item>
+				<ion-range min="0" max="50000000" step="1000000" snaps="true" pin="false" [(ngModel)]="sliderMax" color="secondary" debounce="10" (ionChange)="updateMax();">
+					<ion-icon range-left class="small-text">{{ 'ALERTS_OFF' | translate }}</ion-icon>
+					<ion-icon range-right class="small-text">{{ 'ALERTS_MAX' | translate }}</ion-icon>
+				</ion-range>
+			</ion-item>
+		</ion-list>
+	
+</ion-content>

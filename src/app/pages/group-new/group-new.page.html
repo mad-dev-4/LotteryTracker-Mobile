@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'GROUP_NEW' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-text color="dark">
+    <p>{{ 'GROUP_NEW_DESC' | translate }}</p>
+  </ion-text>
+
+  <form [formGroup]="createGroupForm" (ngSubmit)="saveGroupForm(createGroupForm.value)">
+    <ion-item>
+      <ion-label stacked>{{ 'GROUP_EDIT_NAME' | translate }}</ion-label>
+      <ion-input type="text" formControlName="Name" #input maxlength="30"></ion-input>
+    </ion-item>
+
+    <div class="ion-padding">
+      <ion-button size="large" type="submit" expand="block" [disabled]="!isReadyToSave" routerDirection="back">
+        {{'BUTTON_GROUP_CREATE' | translate }}
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

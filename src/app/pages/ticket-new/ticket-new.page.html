@@ -1,0 +1,58 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+
+		<ion-title>{{ 'TICKET_NEW_TITLE' | translate }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+	<ion-card>
+		<ion-item>
+			<ion-icon name="shirt" item-right></ion-icon>
+			<h3>{{ 'GROUP_SELECT_LOTTO_TEXT' | translate }}</h3>
+		</ion-item>
+		<ion-card-content>
+			<p>{{ 'GROUP_SELECT_LOTTO_GROUP' | translate }} {{ groupName }}</p>
+		</ion-card-content>
+	</ion-card> 
+
+	<ion-card>
+		<ion-card-content>
+			<div class="ticketBorder">
+				<br />
+				<div class="lottoImage">
+					<img cache="true" width="60" height="35" src="assets/img/gamesb{{gameId}}.png" alt="{{gameName}}" class="lottoImage">
+				</div>
+				
+				<ion-list>
+					<ion-item>
+						<ion-label>{{ 'TICKET_NEW_NUM_OF_DRAWS' | translate }}</ion-label>
+						<ion-select id="selectNumOfDraws" class="dropDownMenu" [(ngModel)]="selectNumOfDraws" icon-left clear small>
+							<ion-select-option *ngFor="let nbr of numbers" value="{{nbr}}">{{nbr}}</ion-select-option>
+						</ion-select>
+					</ion-item>
+					<ion-item>
+					  <ion-label>{{ 'TICKET_NEW_FIRST_DRAW' | translate }}</ion-label>
+					  <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.month"></ion-datetime>
+					</ion-item>
+					<ion-item *ngIf="selectNumOfDraws && selectNumOfDraws != 1">
+					  <ion-label>{{ 'TICKET_NEW_LAST_DRAW' | translate }}</ion-label>
+					  <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.month"></ion-datetime>
+					</ion-item>
+					
+					<ion-item *ngFor="let nbrBrds of numberOfBoards">
+						<ion-label fixed>Board {{nbrBrds}}</ion-label>
+						<ion-input type="text" value=""></ion-input>
+					</ion-item>
+				</ion-list>
+
+				
+			</div>
+		</ion-card-content>
+	</ion-card>
+	
+</ion-content>
