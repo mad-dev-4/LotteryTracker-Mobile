@@ -26,10 +26,37 @@ In this package you will find examples of the following:
 ## Fees  
 * No fees are charged if in accordance with the above section.  A simple 'Like' or comment will suffice  
 
-## Screen Captures
+## Example Screen Captures
 
-### TBD
+### Login
+<kbd>
+<img src="https://user-images.githubusercontent.com/78776105/155575798-f652e434-d3c4-4f61-bf76-12a53884d924.png" alt="login screen picture" 
+     style="width:380px"/>
+</kbd>
+  
+### Dashboard  
+<kbd>
+<img src="https://user-images.githubusercontent.com/78776105/155575915-92c0fffc-ed9c-48c7-8be9-06b4498c4ede.png" alt="dashbaord screen picture" 
+     style="width:380px"/>
+</kbd>
 
+### Lottery Group List
+<kbd>
+<img src="https://user-images.githubusercontent.com/78776105/155575280-50e8811a-e02b-4206-8bde-7fb7f4d837fc.png" alt="group list screen picture" 
+     style="width:380px"/>
+</kbd>
+
+### Draw Results 
+<kbd>
+<img src="https://user-images.githubusercontent.com/78776105/155576042-bbb9c875-0a7b-4d02-b161-68367e0e6878.png" alt="draw results screen picture" 
+     style="width:380px"/>
+</kbd>
+
+### Menu Settings 
+<kbd>
+<img src="https://user-images.githubusercontent.com/78776105/155576234-7a4892bc-b924-422a-bae2-80f838ba7e5a.png" alt="menu screen picture" 
+     style="width:380px"/>
+</kbd>
 
  
 
